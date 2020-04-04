@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+<!--    <link href="css/main.css" rel="stylesheet" />   -->
+    <link href="{{url_for('static',filename='css/main.css')}}"  rel="stylesheet" />
+    <title>Title</title>
+    <style>
+    /* Style inputs with type="text", select elements and textareas */
+    input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-color: #a598ee;
+  min-height: 100vh;
+  padding: 20px;
+
+}
+    </style>
+
+    <style>
+                .accordion {
+            background-color: #85d689;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: justify;
+            outline: none;
+            font-size: 23px;
+            transition: 0.4s;
+            }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+            }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+            align: justify;
+            }
+    </style>
+</head>
+<body>
+<div class="container">
+  <form action="/index2">
+
+      <label for="andwords"><b>All these words:</b></label>
+    <input type="text" id="andwords" name="andwords" value="{{andwords}}" placeholder="Type the important words..">
+    <p>
+      <label for="exactwords"><b>This exact word or phrase:</b></label>
+    <input type="text" id="exactwords" name="exactwords" value="{{exactwords}}" placeholder="Put exact words..">
+    </p>
+      <p>
+      <label for="orwords"><b>Any of these words:</b></label>
+    <input type="text" id="orwords" name="orwords" value="{{orwords}}" placeholder="For extensive search..">
+      </p>
+      <p>
+      <label for="notwords"><b>None of these words:</b></label>
+      <input type="text" id="notwords" name="notwords" value="{{notwords}}" placeholder="Words that you don't want..">
+    </p>
+    <input type="submit" value="Search">
+
+  </form>
+    <a href="{{ url_for('index') }}">Normal search</a>
+</div>
+
+<div class="s003">
+    <div class='context'>
+    <ol>
+    {% for resp in response %}
+    <li>
+        <button class="accordion">{{resp._source.NAME}} <br> <h6>ABOUT : {{resp['_source']['ABOUT']}}</h6>  </button>
+        <div class="panel">
+            <p><b>THERAPEUTIC USES : </b> <br>
+            {% for pp in resp['_source']['THERAPEUTIC USES'] %}
+            &nbsp;    {{pp}},
+            {% endfor %}
+            </p>
+
+            <p><b>PROPERTIES AND ACTION : </b>
+                <br><b>Rasa : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Rasa'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Guna : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Guna'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Sita : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Sita'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Vipaka : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Vipaka'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Karma : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Karma'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+            </p>
+
+            <p><b>DOSE :</b> {{resp['_source'].DOSE}}</p>
+
+            <p><b>DESCRIPTION :</b>
+                <br><b>Macroscopic : </b> {{resp['_source']['DESCRIPTION']['Macroscopic']}}
+                <br><b>Microscopic : </b> {{resp['_source']['DESCRIPTION']['Microscopic']}}
+            </p>
+
+            <p><b>CONSTITUENTS : </b>
+            {% for kk in resp['_source']['CONSTITUENTS'] %}
+           <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{kk}}
+            {% endfor %}
+            </p>
+            <p><b>SYNONYMS :</b>
+                <br><b>Sanskrit : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Sanskrit'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Assamese : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Assamese'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Bengali : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Bengali'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>English : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['English'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Gujrati : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Gujrati'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Kannada : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Kannada'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Kashmiri : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Kashmiri'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Malayalam : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Malayalam'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Marathi : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Marathi'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Oriya : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Oriya'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Punjabi : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Punjabi'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Tamil : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Tamil'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Telugu : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Telugu'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Urdu : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Urdu'] %}
+                                &nbsp;    {{kk}},
+                                {% endfor %}
+            </p>
+
+<!--            <p><b>IDENTITY, PURITY AND STRENGTH : </b>{{resp['_source']['IDENTITY, PURITY AND STRENGTH']}}</p> -->
+
+            <p><b>IDENTITY, PURITY AND STRENGTH : </b>
+            {% for kk in resp['_source']['IDENTITY, PURITY AND STRENGTH'] %}
+           <br> <b> {{kk}} : </b> resp['_source']['IDENTITY, PURITY AND STRENGTH']['{{kk}}']  <br>
+            {% endfor %}
+            </p>
+        </div>
+    </li>
+    {% endfor %}
+</ol>
+</div>
+</div>
+
+    <script src="{{url_for('static',filename='js/extention/choices.js')}}"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+<script src="{{url_for('static',filename='js/mark.min.js')}}"></script>
+
+
+<script>
+ var tosearch = document.getElementById("q").value
+ var context = document.querySelectorAll(".context");
+
+  var instance = new Mark(context);
+  instance.mark(document.getElementById("q").value);
+</script>
+
+</body>
+</html>

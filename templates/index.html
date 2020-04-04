@@ -1,0 +1,359 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+<!--    <link href="css/main.css" rel="stylesheet" />   -->
+    <link href="{{url_for('static',filename='css/main.css')}}"  rel="stylesheet" />
+
+          <style>
+body {
+  background: #eee;
+  background: url("../images/search_132.png");
+  font: 18px Lucida sans, Arial, Helvetica, sans-serif;
+	color: #333;
+	text-align: left;
+}
+
+a {
+	color: #2A679F;
+}
+/*========*/
+
+.form-wrapper {
+	background-color: #f6f6f6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
+	background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: linear-gradient(top, #f6f6f6, #eae8e8);
+	border-color: #dedede #bababa #aaa #bababa;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	-moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	margin: 100px auto;
+	overflow: hidden;
+	padding: 8px;
+	width: 450px;
+}
+
+.form-wrapper #search {
+	border: 1px solid #CCC;
+	-webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	-moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+  color: #000;
+	float: left;
+	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+	height: 20px;
+	padding: 10px;
+	width: 320px;
+}
+
+.form-wrapper #search:focus {
+	border-color: #aaa;
+	-webkit-box-shadow: 0 1px 1px #bbb inset;
+	-moz-box-shadow: 0 1px 1px #bbb inset;
+	box-shadow: 0 1px 1px #bbb inset;
+	outline: 0;
+}
+
+.form-wrapper #search:-moz-placeholder,
+.form-wrapper #search:-ms-input-placeholder,
+.form-wrapper #search::-webkit-input-placeholder {
+	color: #999;
+	font-weight: normal;
+}
+
+.form-wrapper #submit {
+	background-color: #0483a0;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#0483a0));
+	background-image: -webkit-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -moz-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: linear-gradient(top, #31b2c3, #0483a0);
+	border: 1px solid #00748f;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	color: #fafafa;
+	cursor: pointer;
+	height: 42px;
+	float: right;
+	font: 15px Arial, Helvetica;
+	padding: 0;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
+	width: 100px;
+}
+
+.form-wrapper #submit:hover,
+.form-wrapper #submit:focus {
+	background-color: #31b2c3;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0483a0), to(#31b2c3));
+	background-image: -webkit-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -moz-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -ms-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -o-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: linear-gradient(top, #0483a0, #31b2c3);
+}
+
+.form-wrapper #submit:active {
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	outline: 0;
+}
+
+.form-wrapper #submit::-moz-focus-inner {
+	border: 0;
+}
+
+        .accordion {
+            background-color: #85d689;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 23px;
+            transition: 0.4s;
+            }
+
+        .active, .accordion:hover {
+            background-color: #ccc;
+            }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+            }
+    </style>
+
+
+  </head>
+  <body>
+    <div class="s003">
+      <form action="/" method="get">
+        <div class="inner-form">
+          <div class="input-field first-wrap">
+            <div class="input-select">
+              <select data-trigger="" id="catval" name="catval">
+                <option value="allcat">All Categories</option>
+                <option value="constit">Constiuents</option>
+                <option value="theruse">Therapeutic Uses</option>
+                <option value="panda">Properties and Action</option>
+                <option value="synon">Synonyms</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-field second-wrap">
+<!--            <input id="search" type="text" placeholder="Enter Keywords?" />  -->
+            <input type="text" name="q" id="q" value="{{q}}" placeholder="Enter Keywords">
+          </div>
+          <div class="input-field third-wrap">
+            <button class="btn-search" type="submit" value="search">
+              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+              </svg>
+            </button>
+              <a href="{{ url_for('index2') }}">Advanced search</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  <!--  <script src="js/extention/choices.js"></script> -->
+
+<div class="s003">
+    <div class='context'>
+    <ol>
+    {% for resp in response %}
+    <li>
+        <button class="accordion">{{resp._source.NAME}} <br> <h6>ABOUT : {{resp['_source']['ABOUT']}}</h6>  </button>
+        <div class="panel">
+            <p><b>THERAPEUTIC USES : </b> <br>
+            {% for pp in resp['_source']['THERAPEUTIC USES'] %}
+            &nbsp;    {{pp}},
+            {% endfor %}
+            </p>
+
+            <p><b>PROPERTIES AND ACTION : </b>
+                <br><b>Rasa : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Rasa'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Guna : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Guna'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Sita : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Sita'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Vipaka : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Vipaka'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+
+                <br><b>Karma : </b>
+                {% for kk in resp['_source']['PROPERTIES AND ACTION']['Karma'] %}
+                &nbsp;    {{kk}},
+                {% endfor %}
+            </p>
+
+            <p><b>DOSE :</b> {{resp['_source'].DOSE}}</p>
+
+            <p><b>DESCRIPTION :</b>
+                <br><b>Macroscopic : </b> {{resp['_source']['DESCRIPTION']['Macroscopic']}}
+                <br><b>Microscopic : </b> {{resp['_source']['DESCRIPTION']['Microscopic']}}
+            </p>
+
+            <p><b>CONSTITUENTS : </b>
+            {% for kk in resp['_source']['CONSTITUENTS'] %}
+           <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    {{kk}}
+            {% endfor %}
+            </p>
+            <p><b>SYNONYMS :</b>
+                <br><b>Sanskrit : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Sanskrit'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Assamese : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Assamese'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Bengali : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Bengali'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>English : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['English'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Gujrati : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Gujrati'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Kannada : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Kannada'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Kashmiri : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Kashmiri'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Malayalam : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Malayalam'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Marathi : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Marathi'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Oriya : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Oriya'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Punjabi : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Punjabi'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Tamil : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Tamil'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Telugu : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Telugu'] %}
+                                 &nbsp;    {{kk}},
+                                {% endfor %}
+                <br><b>Urdu : </b>
+                                {% for kk in resp['_source']['SYNONYMS']['Urdu'] %}
+                                &nbsp;    {{kk}},
+                                {% endfor %}
+            </p>
+
+<!--            <p><b>IDENTITY, PURITY AND STRENGTH : </b>{{resp['_source']['IDENTITY, PURITY AND STRENGTH']}}</p> -->
+
+            <p><b>IDENTITY, PURITY AND STRENGTH : </b>
+            {% for kk in resp['_source']['IDENTITY, PURITY AND STRENGTH'] %}
+           <br> <b> {{kk}} : </b> resp['_source']['IDENTITY, PURITY AND STRENGTH']['{{kk}}']  <br>
+                {{resp['_source']['IDENTITY, PURITY AND STRENGTH'].kk}}
+            {% endfor %}
+            </p>
+        </div>
+    </li>
+    {% endfor %}
+</ol>
+</div>
+</div>
+
+    <script src="{{url_for('static',filename='js/extention/choices.js')}}"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+<script src="{{url_for('static',filename='js/mark.min.js')}}"></script>
+<!--
+<script>
+const q; // search query we want to highlight in results
+const response; // search results
+
+response.replace(new RegExp(q, "gi"), (match) => `<mark>${match}</mark>`);
+</script>
+-->
+
+<script>
+ var tosearch = document.getElementById("q").value
+ var context = document.querySelectorAll(".context");
+
+  var instance = new Mark(context);
+  instance.mark(document.getElementById("q").value);
+</script>
+
+<!--<script src="vendor/mark.js/dist/mark.min.js" charset="UTF-8"></script>    var context = document.querySelector(".context");-->
+
+  </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
